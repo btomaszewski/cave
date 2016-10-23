@@ -1,0 +1,361 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Proof of Concept</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <style>
+    body{
+      padding-top: 50px;
+      /*color: #dddddd;*/
+      /*background-color: #222222;*/
+    }
+    header{
+      padding-top:  0%;
+      overflow-x: hidden;
+      padding-bottom: 0%;
+    }
+    section{
+      padding-top: 5%;
+      overflow-x: hidden;
+      padding-bottom: 5%;
+    }
+    iframe {
+      border: 0px solid #ffffff;
+      overflow-x: hidden;
+      width: 100%;
+      padding: 0px;
+    }
+    .fullimage  {
+      /*background: url('/zaatari camp.jpg') no-repeat center center;*/
+      postion: fixed;
+      width: 100%;
+      height: 600px /*same height as jumbotron */
+      top:0;
+      left:0;
+      z-index: -1;
+    }
+    /*.jumbotron  {
+      margin-bottom: 0px;
+      height: 600px;
+      color: white;
+      text-shadow: black 0.3em 0.3em 0.3em;
+      background:transparent;
+    }*/
+    /*.main-text  {
+      text-align: center;
+      font-family: sans-serif;
+      font-size: xx-large;
+    }*/
+    /*.attribution  {
+      text-align: right;
+      font-family: sans-serif;
+      font-size: large;
+    }*/
+    .justified  {
+      text-align: center;
+      padding-top: 2em;
+    }
+    .item {
+      width: inherit;
+      height: 500px;
+    }
+    .slide {
+      background-size: cover;
+
+    }
+
+
+  .embed-container {
+    position: relative;
+    padding-bottom: 50%;
+    height: 0;
+    max-width: 100%;
+  }
+  .embed-container iframe, .embed-container object, .embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /*height: 100%;*/
+  }
+  small {
+    position: absolute;
+    z-index: 40;
+    bottom: 0;
+    margin-bottom: -15px;
+  }
+</style>
+</head>
+<body>
+  <!-- Navbar section -->
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" id="top-btn" class="navbar-brand">Zaatari Statistics</a>
+        </div>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="nav navbar-nav">
+            <li><a href="#" id="main-btn">Zaatari Map</a></li>
+            <li><a href="#c2" id="c2-btn">Data Summary</a></li>
+            <li><a href="#c3" id="c3-btn">Chart 3</a></li>
+            <li><a href="#support" id="support-btn">Chart 4</a></li>
+            <li><a href="#contact" id="contact-btn">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<!-- Page Header - Complete with Bootstrap Carousel for fancy images -->
+
+    <header>
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active" data-background="zaatari camp.jpg">
+            <img src="zaatari camp.jpg" style="width:100%">
+            <div class="carousel-caption">
+            </div>
+          </div>
+
+          <div class="item">
+            <img src="zaatari camp2.jpg" style="width:100%">
+            <div class="carousel-caption">
+
+            </div>
+          </div>
+
+          <div class="item">
+            <img src="zaatari camp3.jpg" style="width:100%">
+            <div class="carousel-caption">
+
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <!-- <div class="fullimage">
+        <div class="jumbotron">
+          <div class="container">
+            <h1>Zaatari Refugee Camp</h1>
+            <p class="lead">UNHCR Relief Efforts</p>
+          </div>
+        </div>
+      </div> -->
+    </header>
+
+<!-- Main map, thanks to ArcMap.  Will hopefully be replaced by a tableau viz -->
+
+    <section id="Map">
+      <div class="row container-fluid">
+        <div class="col-md-7">
+          <div class="embed-container">
+            <iframe width="500" height="400"  title="District Basemap" src="//ritarcgis.maps.arcgis.com/apps/Embed/index.html?webmap=3b0c8f1372e64edfbf1bf3089214d9a4&amp;extent=36.2912,32.2702,36.3638,32.3157&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <h3>Zaatari Refugee Camp</h3>
+          <p>Zaatari is home to nearly 1.5 million refugees of the civil war in
+          Syria.  It is a relief effort of the United Nations under the High
+          Commisioner for Refugees.  The United Nations is working to make this
+          camp a welcoming home for these victims of war while also finding them
+          new homes away from the strife of their own nation.</p>
+          <p>Zaatari is comprised of 12 districts and organized as a large city.
+            It is outfitted with not only homes, but hospitals, schools, markets,
+            even barber shops and tailors.  There are schools available in the
+            American system as well as the Saudi tradition.  Religious centers
+            are scattered all over the map and several are available in each
+            district.
+          </p>
+        </div>
+      </div>
+  </section>
+
+
+<!-- Tableau viz 1 -->
+
+  <section id="c2">
+    <div class="container">
+      <h3>Data Summary</h3>
+      <div class='tableauPlaceholder' id='viz1476384542098' style='position: relative'>
+        <noscript>
+          <a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;KA&#47;KACAVEgraphs&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz'  style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='site_root' value='' />
+          <param name='name' value='KACAVEgraphs&#47;Dashboard1' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;KA&#47;KACAVEgraphs&#47;Dashboard1&#47;1.png' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+        </object>
+      </div>
+      <script type='text/javascript'>
+        var divElement = document.getElementById('viz1476384542098');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        vizElement.style.width='1004px';vizElement.style.height='869px';
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+      </script>
+    </div>
+  </section>
+
+<!-- Tableau viz 2 -->
+
+  <section id="c3">
+    <div class="container">
+      <h3>Workplace Skills</h3>
+      <div class='tableauPlaceholder' id='viz1476385161476' style='position: relative'>
+        <noscript>
+          <a href='#'><img alt='Sheet 4 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CA&#47;CAVEdatagraphs&#47;Sheet4&#47;1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz'  style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='site_root' value='' />
+          <param name='name' value='CAVEdatagraphs&#47;Sheet4' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CA&#47;CAVEdatagraphs&#47;Sheet4&#47;1.png' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+        </object>
+      </div>
+      <script type='text/javascript'>
+        var divElement = document.getElementById('viz1476385161476');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        vizElement.style.width='100%';
+        vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+      </script>
+    </div>
+  </section>
+</body>
+<script type="text/javascript">
+
+/*
+This part of the script manages animating the webpage.
+*/
+  $("#top-btn").click(function() {
+    var offset = 0; //Offset of 20px
+
+    $('html, body').animate({
+      scrollTop: $('body').offset().top + offset
+    }, 1000);
+  });
+
+  $("#main-btn").click(function() {
+    var offset = 20; //Offset of 20px
+
+    $('html, body').animate({
+      scrollTop: $('#Map').offset().top + offset
+    }, 1000);
+  });
+
+  $("#c2-btn").click(function() {
+    var offset = 20; //Offset of 20px
+
+    $('html, body').animate({
+      scrollTop: $('#c2').offset().top + offset
+    }, 1000);
+  });
+
+  $("#c3-btn").click(function() {
+    var offset = 20; //Offset of 20px
+
+    $('html, body').animate({
+      scrollTop: $('#c3').offset().top + offset
+    }, 1000);
+  });
+
+  $("#support-btn").click(function() {
+    var offset = 20; //Offset of 20px
+
+    $('html, body').animate({
+      scrollTop: $('#support').offset().top + offset
+    }, 1000);
+  });
+
+  $("#contact-btn").click(function() {
+    var offset = 20; //Offset of 20px
+
+    $('html, body').animate({
+      scrollTop: $('#contact').offset().top + offset
+    }, 1000);
+  });
+
+  // This section controls the scaling of the page
+
+  // var jumboHeight = $('.jumbotron').outerHeight();
+  // function parallax(){
+  //     var scrolled = $(window).scrollTop();
+  //     $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+  // }
+  //
+  // $(window).scroll(function(e){
+  //     parallax();
+  // });
+
+  function setCarouselSlides(index)  {
+    var img = $(this).attr("data-background");
+    console.log(img);
+    $(this).css('background-image',
+      'background-image:'
+      +' linear-gradient('
+      +   'rgba(0, 0, 0, 0.5),'
+      +   'rgba(0, 0, 0, 0.5)'
+      + '),'
+      + 'url(' + img + ');');
+  }
+
+  function resize_carousel() {
+      var height = $(window).height() - $('.navbar').height();
+      height = parseInt(height) + 'px';
+      $(".item").css('height',height);
+      $(".carousel").css('height', height);
+      $(".carousel-inner img").css('height', height);
+  }
+
+  $(document).ready(function() {
+      resize_carousel();
+      $(window).bind('resize', resize_carousel);
+      $('.item').each(setCarouselSlides)
+  });
+
+
+</script>
+</html>
