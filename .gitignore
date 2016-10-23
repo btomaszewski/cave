@@ -1,1 +1,5 @@
-__pycache__/*
+#no cache
+__pycache__/
+
+#remove python bytecode
+*.py[cod]
